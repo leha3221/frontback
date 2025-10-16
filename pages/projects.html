@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекты | Портфолио</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">♕</div>
+        <h1>Имя Студента</h1>
+        <nav>
+            <a href="../index.html">Главная</a>
+            <a href="projects.html">Проекты</a>
+            <a href="diary.html">Дневник</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="projects-header">
+            <h2>Мои проекты</h2>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="html">HTML</button>
+                <button class="filter-btn" data-filter="js">JS</button>
+                <button class="filter-btn" data-filter="react">React</button>
+            </div>
+        </section>
+
+        <section class="projects-grid">
+            <div class="project-card" data-category="html">
+                <div class="project-image"></div>
+                <h3>Личный сайт</h3>
+                <p>HTML, CSS</p>
+            </div>
+            
+            <div class="project-card" data-category="js">
+                <div class="project-image"></div>
+                <h3>Todo-приложение</h3>
+                <p>JavaScript</p>
+            </div>
+            
+            <div class="project-card" data-category="react">
+                <div class="project-image"></div>
+                <h3>Интернет-магазин</h3>
+                <p>React</p>
+            </div>
+            
+            <div class="project-card" data-category="html">
+                <div class="project-image"></div>
+                <h3>Портфолио</h3>
+                <p>Bootstrap</p>
+            </div>
+        </section>
+    </main>
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modalTitle">Название проекта</h3>
+            <div class="modal-body">
+                <div class="project-screenshots">
+                    <img src="" alt="Скриншот проекта" id="modalImage">
+                </div>
+                <div class="project-details">
+                    <p id="modalDescription">Описание проекта</p>
+                    <div class="project-links">
+                        <a href="#" id="modalLiveLink" class="btn">Живая версия</a>
+                        <a href="#" id="modalCodeLink" class="btn">Исходный код</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Контакты</p>
+    </footer>
+
+    <script src="../scripts/projects.js"></script>
+</body>
+</html>

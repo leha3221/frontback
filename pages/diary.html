@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дневник | Портфолио</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">♕</div>
+        <h1>Имя Студента</h1>
+        <nav>
+            <a href="../index.html">Главная</a>
+            <a href="projects.html">Проекты</a>
+            <a href="diary.html">Дневник</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="diary-progress">
+            <h2>Мой учебный прогресс</h2>
+            <div class="progress-list">
+                <div class="progress-item completed">
+                    <span class="date">15 дек</span>
+                    <span class="task">Верстка макета сайта</span>
+                    <span class="status">⟳</span>⟳
+                </div>
+                <div class="progress-item completed">
+                    <span class="date">10 дек</span>
+                    <span class="task">JavaScript основы</span>
+                    <span class="status">⟳</span>
+                </div>
+                <div class="progress-item in-progress">
+                    <span class="date">05 дек</span>
+                    <span class="task">Работа с формами</span>
+                    <span class="status">✓</span>
+                </div>
+                <div class="progress-item in-progress">
+                    <span class="date">01 дек</span>
+                    <span class="task">Адаптивный дизайн</span>
+                    <span class="status">✓</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="current-courses">
+            <h2>Текущие курсы</h2>
+            <div class="course">
+                <span>Веб-разработка</span>
+                <div class="course-bar">
+                    <div class="course-progress" style="width: 90%;"></div>
+                </div>
+                <span>90%</span>
+            </div>
+            <div class="course">
+                <span>JavaScript</span>
+                <div class="course-bar">
+                    <div class="course-progress" style="width: 70%;"></div>
+                </div>
+                <span>70%</span>
+            </div>
+            <div class="course">
+                <span>React</span>
+                <div class="course-bar">
+                    <div class="course-progress" style="width: 50%;"></div>
+                </div>
+                <span>50%</span>
+            </div>
+        </section>
+
+        <button class="add-entry-btn">Добавить запись</button>
+    </main>
+
+    <footer>
+        <p>© 2025 Контакты</p>
+    </footer>
+</body>
+</html>
