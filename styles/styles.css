@@ -1,4 +1,4 @@
-/* Reset и базовые стили */
+
 * {
     margin: 0;
     padding: 0;
@@ -11,8 +11,6 @@ body {
     color: #333;
     background-color: #f8f9fa;
 }
-
-/* Header */
 header {
     background: #ffffff;
     padding: 1rem 2rem;
@@ -45,13 +43,11 @@ nav a:hover {
     color: #007bff;
 }
 
-/* Main content */
 main {
     min-height: 70vh;
     padding: 2rem;
 }
 
-/* Intro section */
 .intro {
     display: flex;
     justify-content: space-between;
@@ -79,8 +75,6 @@ main {
     object-fit: cover;
     border: 5px solid #007bff;
 }
-
-/* Кнопки */
 .btn {
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -113,8 +107,6 @@ main {
 .download-btn::before {
     content: "📥";
 }
-
-/* Skills section */
 .skills {
     background: white;
     padding: 2rem;
@@ -153,8 +145,6 @@ main {
     background: linear-gradient(90deg, #007bff, #0056b3);
     border-radius: 5px;
 }
-
-/* Projects preview */
 .projects-preview {
     background: white;
     padding: 2rem;
@@ -187,8 +177,6 @@ main {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
-
-/* Footer */
 footer {
     background: #343a40;
     color: white;
@@ -196,8 +184,6 @@ footer {
     padding: 1.5rem;
     margin-top: 3rem;
 }
-
-/* Стили для страницы проектов */
 .projects-header {
     display: flex;
     justify-content: space-between;
@@ -228,8 +214,6 @@ footer {
     background: #007bff;
     color: white;
 }
-
-/* Модальное окно */
 .modal {
     display: none;
     position: fixed;
@@ -284,8 +268,6 @@ footer {
     gap: 1rem;
     margin-top: 1.5rem;
 }
-
-/* Стили для дневника */
 .diary-progress,
 .current-courses {
     background: white;
@@ -364,8 +346,6 @@ footer {
 .add-entry-btn:hover {
     background: #0056b3;
 }
-
-/* Стили для контактов */
 .contact-form-section,
 .contact-info {
     background: white;
@@ -426,8 +406,6 @@ footer {
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
 }
-
-/* Адаптивность */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
