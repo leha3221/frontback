@@ -31,43 +31,47 @@
 
         <section class="projects-grid">
             <div class="project-card" data-category="html">
-                <div class="project-image"></div>
-                <h3>Личный сайт</h3>
-                <p>HTML, CSS</p>
+                <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                <h3>Личный сайт-портфолио</h3>
+                <p class="project-tech">HTML, CSS, JavaScript</p>
+                <p class="project-description">Создание современного адаптивного сайта-портфолио.</p>
+                <button class="project-details-btn" data-project="1">Подробнее...</button>
             </div>
             
             <div class="project-card" data-category="js">
-                <div class="project-image"></div>
-                <h3>Todo-приложение</h3>
-                <p>JavaScript</p>
+                <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                <h3>Калькулятор</h3>
+                <p class="project-tech">C#</p>
+                <p class="project-description">Создание программы калькулятора на языке C#</p>
+                <button class="project-details-btn" data-project="2">Подробнее...</button>
             </div>
             
             <div class="project-card" data-category="react">
-                <div class="project-image"></div>
-                <h3>Интернет-магазин</h3>
-                <p>React</p>
-            </div>
-            
-            <div class="project-card" data-category="html">
-                <div class="project-image"></div>
-                <h3>Портфолио</h3>
-                <p>Bootstrap</p>
+                <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                <h3>Сайт для семестровой работы</h3>
+                <p class="project-tech">React, Node.js, MongoDB</p>
+                <p class="project-description">Полнофункциональный сайт</p>
+                <button class="project-details-btn" data-project="3">Подробнее...</button>
             </div>
         </section>
     </main>
+
     <div id="projectModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h3 id="modalTitle">Название проекта</h3>
             <div class="modal-body">
                 <div class="project-screenshots">
-                    <img src="" alt="Скриншот проекта" id="modalImage">
+                    <div id="modalImage" class="modal-image"></div>
                 </div>
                 <div class="project-details">
                     <p id="modalDescription">Описание проекта</p>
+                    <div class="project-tech-stack">
+                        <strong>Технологии:</strong> <span id="modalTech"></span>
+                    </div>
                     <div class="project-links">
-                        <a href="#" id="modalLiveLink" class="btn">Живая версия</a>
-                        <a href="#" id="modalCodeLink" class="btn">Исходный код</a>
+                        <a href="#" id="modalLiveLink" class="btn" target="_blank">🌐 Живая версия</a>
+                        <a href="#" id="modalCodeLink" class="btn" target="_blank">💻 Исходный код</a>
                     </div>
                 </div>
             </div>

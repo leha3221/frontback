@@ -1,119 +1,9 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная | Портфолио</title>
-    <link rel="stylesheet" href="styles/styles.css">
-</head>
-<body>
-    <header>
-        <div class="logo">♕</div>
-        <h1>Алексей Маслов</h1>
-        <nav>
-            <a href="index.html">Главная</a>
-            <a href="pages/projects.html">Проекты</a>
-            <a href="pages/diary.html">Дневник</a>
-            <a href="pages/contacts.html">Контакты</a>
-        </nav>
-    </header>
-
-    <main>
-        <section class="intro">
-            <div class="intro-text">
-                <h2>Привет! Я студент группы ЭФБО-07-24</h2>
-                <p>Увлекаюсь веб-разработкой</p>
-                <a href="pages/resume.html" class="btn">Посмотреть резюме</a>
-            </div>
-            <div class="intro-photo">
-                <img src="images/photo.jpg">
-            </div>
-        </section>
-
-        <section class="skills">
-            <h2>Мои навыки</h2>
-            <div class="skill">
-                <span>HTML/CSS</span>
-                <div class="bar"><div class="progress" style="width: 90%;"></div></div>
-                <span>90%</span>
-            </div>
-            <div class="skill">
-                <span>JavaScript</span>
-                <div class="bar"><div class="progress" style="width: 80%;"></div></div>
-                <span>80%</span>
-            </div>
-            <div class="skill">
-                <span>Bootstrap</span>
-                <div class="bar"><div class="progress" style="width: 85%;"></div></div>
-                <span>85%</span>
-            </div>
-            <div class="skill">
-                <span>React</span>
-                <div class="bar"><div class="progress" style="width: 60%;"></div></div>
-                <span>60%</span>
-            </div>
-        </section>
-
-        <section class="projects-preview">
-            <h2>Лучшие проекты</h2>
-            <div class="projects-grid">
-                <div class="project-card" data-category="js">
-                    <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
-                    <h3>Калькулятор</h3>
-                    <p class="project-tech">C#</p>
-                    <p class="project-description">Создание программы калькулятора на языке C#</p>
-                    <button class="project-details-btn" data-project="2">Подробнее...</button>
-                </div>
-                <div class="project-card" data-category="html">
-                    <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-                    <h3>Личный сайт-портфолио</h3>
-                    <p class="project-tech">HTML, CSS, JavaScript</p>
-                    <p class="project-description">Создание современного адаптивного сайта-портфолио с анимациями и интерактивными элементами</p>
-                    <button class="project-details-btn" data-project="1">Подробнее...</button>
-                </div>
-                <div class="project-card" data-category="react">
-                    <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
-                    <h3>Сайт для семестровой работы</h3>
-                    <p class="project-tech">React, Node.js, MongoDB</p>
-                    <p class="project-description">Полнофункциональный сайт включающий в себя мобильную адаптацию, страницу товаров небольшую новостную ленту и страницу с контактами</p>
-                    <button class="project-details-btn" data-project="3">Подробнее...</button>
-                </div>
-            </div>
-        </section>
-    </main>
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3 id="modalTitle">Название проекта</h3>
-            <div class="modal-body">
-                <div class="project-screenshots">
-                    <div id="modalImage" class="modal-image"></div>
-                </div>
-                <div class="project-details">
-                    <p id="modalDescription">Описание проекта</p>
-                    <div class="project-tech-stack">
-                        <strong>Технологии:</strong> <span id="modalTech"></span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" id="modalLiveLink" class="btn" target="_blank">🌐 Живая версия</a>
-                        <a href="#" id="modalCodeLink" class="btn" target="_blank">💻 Исходный код</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2025 Контакты</p>
-    </footer>
-
-    <script>
-        const projectsData = {
+const projectsData = {
     1: {
         title: "Личный сайт-портфолио",
         description: "Создание современного адаптивного сайта-портфолио. Проект включает в себя интерактивные элементы и полную адаптацию под мобильные устройства. Особенности: семантическая верстка, оптимизация производительности, кроссбраузерная совместимость.",
         tech: "HTML5, CSS3, JavaScript, Flexbox, Grid",
-        image: "images/project1.jpg", 
+        image: "../images/project1.jpg", 
         imageStyle: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
         liveLink: "https://leha3221.github.io/frontback/",
         codeLink: "https://github.com/leha3221/frontback"
@@ -122,7 +12,7 @@
         title: "Калькулятор",
         description: "Создание программы калькулятора на языке C#",
         tech: "C#",
-        image: "images/project2.jpg", 
+        image: "../images/project2.jpg", 
         imageStyle: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
         codeLink: "https://leha3221.github.io/frontback/"
     },
@@ -130,7 +20,7 @@
         title: "Сайт для семестровой работы",
         description: "Полнофункциональный сайт включающий в себя мобильную адаптацию, страницу товаров небольшую новостную ленту и страницу с контактами",
         tech: "HTML5, CSS3, JavaScript",
-        image: "images/project3.jpg", 
+        image: "../images/project3.jpg", 
         imageStyle: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
         liveLink: "https://leha3221.github.io/front-and-backend-prac/",
         codeLink: "https://github.com/leha3221/front-and-backend-prac"
@@ -265,6 +155,3 @@ function closeModal() {
     document.getElementById('projectModal').style.display = 'none';
     document.body.style.overflow = 'auto';
 }
-    </script>
-</body>
-</html>
