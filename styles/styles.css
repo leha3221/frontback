@@ -544,8 +544,6 @@ footer {
 .projects-preview .project-details-btn:hover {
     background: #0056b3;
 }
-
-/* Адаптивность для главной страницы */
 @media (max-width: 768px) {
     .projects-preview .projects-grid {
         grid-template-columns: 1fr;
@@ -556,7 +554,6 @@ footer {
         height: 140px;
     }
 }
-/* Стили для прижатого футера */
 html, body {
     height: 100%;
 }
@@ -574,8 +571,6 @@ main {
 footer {
     flex-shrink: 0;
 }
-
-/* Стили для карточек проектов */
 .project-card {
     background: white;
     border-radius: 15px;
@@ -636,8 +631,6 @@ footer {
 .project-details-btn:hover {
     background: #0056b3;
 }
-
-/* Стили для модального окна */
 .modal-image {
     width: 100%;
     height: 250px;
