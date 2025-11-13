@@ -26,6 +26,17 @@
                 <a href="assets/resume.pdf" download class="btn">Скачать резюме</a>
             </div>
             <div class="intro-photo">
+                <picture>
+                    <source srcset="images/photo.webp" type="image/webp">
+                    <source srcset="images/photo.jpg" type="image/jpeg">
+                    <img src="images/photo.jpg" 
+                         alt="Фото Алексея Маслова"
+                         class="responsive-photo"
+                         loading="lazy"
+                         srcset="images/photo.jpg 1x, images/photo@2x.jpg 2x">
+                </picture>
+            </div>
+            <div class="intro-photo">
                 <img src="images/photo.jpg">
             </div>
         </section>
@@ -170,20 +181,35 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeProjectImages() {
-    document.querySelectorAll('.project-card').forEach(card => {
-        const projectId = card.querySelector('.project-details-btn').getAttribute('data-project');
-        const project = projectsData[projectId];
-        
-        if (project && project.image) {
-            const projectImage = card.querySelector('.project-image');
+            document.querySelectorAll('.project-card').forEach(card => {
+                const projectId = card.querySelector('.project-details-btn').getAttribute('data-project');
+                const project = projectsData[projectId];
+                
+                if (project && project.image) {
+                    const projectImage = card.querySelector('.project-image')
+                    const picture = document.createElement('picture');
+                    const sourceWebP = document.createElement('source');
+                    sourceWebP.srcset = project.image.replace('.jpg', '.webp');
+                    sourceWebP.type = 'image/webp';
+                    const sourceJpeg = document.createElement('source');
+                    sourceJpeg.srcset = project.image;
+                    sourceJpeg.type = 'image/jpeg';
             
-            const img = document.createElement('img');
-            img.src = project.image;
-            img.alt = project.title;
-            img.style.width = '100%';
-            img.style.height = '100%';
-            img.style.objectFit = 'cover';
-            img.style.borderRadius = '10px';
+                    const img = document.createElement('img');
+                    img.src = project.image;
+                    img.alt = project.title;
+                    img.className = 'project-responsive-image';
+                    img.loading = 'lazy';
+
+                    if (project.image.includes('@1x')) {
+                        img.srcset = `${project.image} 1x, ${project.image.replace('@1x', '@2x')} 2x`;
+                    }
+                    picture.appendChild(sourceWebP);
+                    picture.appendChild(sourceJpeg);
+                    picture.appendChild(img);
+                    
+                    projectImage.innerHTML = '';
+                    projectImage.appendChild(picture);
             
             
             projectImage.innerHTML = '';
@@ -191,9 +217,15 @@ function initializeProjectImages() {
             
             
             img.onerror = function() {
-                this.style.display = 'none';
+                picture.style.display = 'none';
                 projectImage.style.background = project.imageStyle;
-            };
+                projectImage.style.display = 'flex';
+                projectImage.style.alignItems = 'center';
+                projectImage.style.justifyContent = 'center';
+                projectImage.style.color = 'white';
+                projectImage.style.fontWeight = 'bold';
+                projectImage.innerHTML = project.title;
+                    };
         }
     });
 }

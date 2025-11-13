@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
 function initializeProjectImages() {
     document.querySelectorAll('.project-card').forEach(card => {
         const projectId = card.querySelector('.project-details-btn').getAttribute('data-project');
@@ -66,23 +65,41 @@ function initializeProjectImages() {
         
         if (project && project.image) {
             const projectImage = card.querySelector('.project-image');
+            const picture = document.createElement('picture');
+            const sourceLarge = document.createElement('source');
+            sourceLarge.media = '(min-width: 1200px)';
+            sourceLarge.srcset = project.image.replace('.jpg', '-large.jpg');
             
+            const sourceMedium = document.createElement('source');
+            sourceMedium.media = '(min-width: 768px)';
+            sourceMedium.srcset = project.image.replace('.jpg', '-medium.jpg');
+            const sourceWebP = document.createElement('source');
+            sourceWebP.srcset = project.image.replace('.jpg', '.webp');
+            sourceWebP.type = 'image/webp';
             const img = document.createElement('img');
             img.src = project.image;
             img.alt = project.title;
-            img.style.width = '100%';
-            img.style.height = '100%';
-            img.style.objectFit = 'cover';
-            img.style.borderRadius = '10px';
-            
+            img.className = 'project-responsive-image';
+            img.loading = 'lazy';
+            picture.appendChild(sourceLarge);
+            picture.appendChild(sourceMedium);
+            picture.appendChild(sourceWebP);
+            picture.appendChild(img);
             
             projectImage.innerHTML = '';
-            projectImage.appendChild(img);
-            
-            
+            projectImage.appendChild(picture);
+            img.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
             img.onerror = function() {
-                this.style.display = 'none';
+                picture.style.display = 'none';
                 projectImage.style.background = project.imageStyle;
+                projectImage.style.display = 'flex';
+                projectImage.style.alignItems = 'center';
+                projectImage.style.justifyContent = 'center';
+                projectImage.style.color = 'white';
+                projectImage.style.fontWeight = 'bold';
+                projectImage.innerHTML = project.title;
             };
         }
     });
