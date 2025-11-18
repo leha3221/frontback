@@ -66,31 +66,43 @@ function initializeProjectImages() {
         if (project && project.image) {
             const projectImage = card.querySelector('.project-image');
             const picture = document.createElement('picture');
-            const sourceLarge = document.createElement('source');
-            sourceLarge.media = '(min-width: 1200px)';
-            sourceLarge.srcset = project.image.replace('.jpg', '-large.jpg');
-            
-            const sourceMedium = document.createElement('source');
-            sourceMedium.media = '(min-width: 768px)';
-            sourceMedium.srcset = project.image.replace('.jpg', '-medium.jpg');
+            const sourceAvif = document.createElement('source');
+            sourceAvif.type = 'image/avif';
+            sourceAvif.srcset = `
+                ${project.image.replace('.jpg', '-150.avif')} 150w,
+                ${project.image.replace('.jpg', '-200.avif')} 200w,
+                ${project.image.replace('.jpg', '-300.avif')} 300w
+            `;
+            sourceAvif.sizes = '(max-width: 768px) 150px, 200px';
             const sourceWebP = document.createElement('source');
-            sourceWebP.srcset = project.image.replace('.jpg', '.webp');
             sourceWebP.type = 'image/webp';
+            sourceWebP.srcset = `
+                ${project.image.replace('.jpg', '-150.webp')} 150w,
+                ${project.image.replace('.jpg', '-200.webp')} 200w,
+                ${project.image.replace('.jpg', '-300.webp')} 300w
+            `;
+            sourceWebP.sizes = '(max-width: 768px) 150px, 200px';
             const img = document.createElement('img');
             img.src = project.image;
+            img.srcset = `
+                ${project.image.replace('.jpg', '-150.jpg')} 150w,
+                ${project.image.replace('.jpg', '-200.jpg')} 200w,
+                ${project.image.replace('.jpg', '-300.jpg')} 300w
+            `;
+            img.sizes = '(max-width: 768px) 150px, 200px';
             img.alt = project.title;
+            img.width = 200;
+            img.height = 180;
             img.className = 'project-responsive-image';
             img.loading = 'lazy';
-            picture.appendChild(sourceLarge);
-            picture.appendChild(sourceMedium);
+            
+            picture.appendChild(sourceAvif);
             picture.appendChild(sourceWebP);
             picture.appendChild(img);
             
             projectImage.innerHTML = '';
             projectImage.appendChild(picture);
-            img.addEventListener('load', function() {
-                this.classList.add('loaded');
-            });
+            
             img.onerror = function() {
                 picture.style.display = 'none';
                 projectImage.style.background = project.imageStyle;
@@ -104,21 +116,6 @@ function initializeProjectImages() {
         }
     });
 }
-
-function filterProjects(filter) {
-    const projects = document.querySelectorAll('.project-card');
-    
-    projects.forEach(project => {
-        const category = project.getAttribute('data-category');
-        
-        if (filter === 'all' || category === filter) {
-            project.style.display = 'block';
-        } else {
-            project.style.display = 'none';
-        }
-    });
-}
-
 function openProjectModal(projectId) {
     const project = projectsData[projectId];
     
