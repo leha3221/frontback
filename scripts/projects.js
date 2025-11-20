@@ -67,7 +67,7 @@ function initializeProjectImages() {
             const projectImage = card.querySelector('.project-image');
             const picture = document.createElement('picture');
             
-            // Разные размеры для разных экранов
+            
             const sourceLarge = document.createElement('source');
             sourceLarge.media = '(min-width: 1200px)';
             sourceLarge.srcset = `
@@ -82,15 +82,12 @@ function initializeProjectImages() {
                 ${project.image.replace('.jpg', '-medium@2x.webp')} 2x
             `;
             
-            // WebP с Retina поддержкой
             const sourceWebP = document.createElement('source');
             sourceWebP.srcset = `
                 ${project.image.replace('.jpg', '-small.webp')} 1x,
                 ${project.image.replace('.jpg', '-small@2x.webp')} 2x
             `;
             sourceWebP.type = 'image/webp';
-            
-            // Fallback JPEG с Retina поддержкой
             const img = document.createElement('img');
             img.src = project.image.replace('.jpg', '-small.jpg');
             img.srcset = `

@@ -3,59 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Контакты | Портфолио</title>
+    <title>Контакты | Портфолио Маслова Алексея</title>
     <link rel="stylesheet" href="../styles/styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">♕</div>
+    <a class="skip-link" href="#main-content">Перейти к основному содержимому</a>
+    
+    <header role="banner">
+        <div class="logo" aria-hidden="true">♕</div>
         <h1>Маслов Алексей</h1>
-        <nav>
-            <a href="../index.html">Главная</a>
-            <a href="projects.html">Проекты</a>
-            <a href="diary.html">Дневник</a>
-            <a href="contacts.html">Контакты</a>
+        <nav role="navigation" aria-label="Основная навигация">
+            <ul role="menubar">
+                <li role="none"><a href="../index.html" role="menuitem">Главная</a></li>
+                <li role="none"><a href="projects.html" role="menuitem">Проекты</a></li>
+                <li role="none"><a href="diary.html" role="menuitem">Дневник</a></li>
+                <li role="none"><a href="contacts.html" role="menuitem" aria-current="page">Контакты</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main>
-        <section class="contact-form-section">
-            <h2>Свяжитесь со мной</h2>
-            <form id="contactForm" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Имя:</label>
-                    <input type="text" id="name" name="name" required>
-                    <span class="error-message" id="nameError"></span>
-                </div>
+    <main id="main-content" role="main">
+        <h1 class="visually-hidden">Контактная информация</h1>
+        
+        <section class="contact-form-section" aria-labelledby="contact-form-heading">
+            <h2 id="contact-form-heading">Свяжитесь со мной</h2>
+            
+            <form id="contactForm" class="contact-form" novalidate aria-describedby="form-instructions">
+                <p id="form-instructions" class="form-instructions">
+                    Все поля, помеченные звёздочкой (<span class="required-asterisk" aria-hidden="true">*</span>), обязательны для заполнения.
+                </p>
                 
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                    <span class="error-message" id="emailError"></span>
-                </div>
+                <fieldset>
+                    <legend class="visually-hidden">Персональная информация</legend>
+                    
+                    <div class="form-group">
+                        <label for="name" class="required">
+                            Имя <span class="required-asterisk" aria-hidden="true">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required 
+                            aria-required="true"
+                            aria-describedby="name-hint"
+                            autocomplete="name">
+                        <span class="error-message" id="nameError" role="alert" aria-live="polite"></span>
+                        <span id="name-hint" class="field-hint">Введите ваше полное имя</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="required">
+                            Email <span class="required-asterisk" aria-hidden="true">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required 
+                            aria-required="true"
+                            aria-describedby="email-hint"
+                            autocomplete="email">
+                        <span class="error-message" id="emailError" role="alert" aria-live="polite"></span>
+                        <span id="email-hint" class="field-hint">Введите действующий email адрес</span>
+                    </div>
+                </fieldset>
                 
-                <div class="form-group">
-                    <label for="message">Сообщение:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                    <span class="error-message" id="messageError"></span>
-                </div>
+                <fieldset>
+                    <legend class="visually-hidden">Текст сообщения</legend>
+                    
+                    <div class="form-group">
+                        <label for="message" class="required">
+                            Сообщение <span class="required-asterisk" aria-hidden="true">*</span>
+                        </label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            rows="5" 
+                            required 
+                            aria-required="true"
+                            aria-describedby="message-hint"
+                            placeholder="Опишите цель вашего обращения..."></textarea>
+                        <span class="error-message" id="messageError" role="alert" aria-live="polite"></span>
+                        <span id="message-hint" class="field-hint">Минимум 10 символов</span>
+                    </div>
+                </fieldset>
                 
-                <button type="submit" class="btn">Отправить сообщение</button>
+                <button type="submit" class="btn" aria-describedby="submit-instructions">
+                    Отправить сообщение
+                </button>
+                <p id="submit-instructions" class="form-instructions">
+                    После отправки формы вы получите подтверждение на указанный email.
+                </p>
             </form>
         </section>
 
-        <section class="contact-info">
-            <h3>Контакты:</h3>
+        <section class="contact-info" aria-labelledby="contact-info-heading">
+            <h2 id="contact-info-heading">Мои контакты</h2>
+            
             <div class="contact-details">
-                <p>📧 student@edu.ru</p>
-                <p>💻 GitHub: <a href="https://github.com/leha3221">leha3221</a></p>
-                <p>📍 Домодедово, Рязань</p>
+                <div class="contact-item">
+                    <span class="contact-icon" aria-hidden="true">📧</span>
+                    <span>Email: <a href="mailto:student@edu.ru">student@edu.ru</a></span>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="contact-icon" aria-hidden="true">💻</span>
+                    <span>GitHub: <a href="https://github.com/leha3221">leha3221</a></span>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="contact-icon" aria-hidden="true">📍</span>
+                    <span>Местоположение: Домодедово, Рязань</span>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>© 2025 Контакты</p>
+    <footer role="contentinfo">
+        <p>© 2025 Маслов Алексей. Все права защищены.</p>
     </footer>
 
     <script src="../scripts/contacts.js"></script>
