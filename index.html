@@ -28,17 +28,51 @@
             </div>
             <div class="intro-photo">
                 <picture>
-                    <source srcset="images/photo.webp" type="image/webp">
-                    <source srcset="images/photo.jpg" type="image/jpeg">
-                    <img src="images/photo.jpg" 
-                         alt="Фото Алексея Маслова"
-                         class="responsive-photo"
-                         loading="lazy"
-                         srcset="images/photo.jpg 1x, images/photo@2x.jpg 2x">
+                    <img 
+                        src="images/photo.jpg" 
+                        class="responsive-photo"
+                        width="300"
+                        height="300"
+                        loading="eager">
+                    <source 
+                        srcset="images/photo@1x.webp 1x, images/photo@2x.webp 2x" 
+                        type="image/webp">
+                    <source 
+                        srcset="images/photo@1x.avif 1x, images/photo@2x.avif 2x" 
+                        type="image/avif">
                 </picture>
             </div>
-            <div class="intro-photo">
-                <img src="images/photo.jpg">
+        </section>
+        <section class="object-fit-demo-section">
+            <h2>Техники работы с изображениями</h2>
+            <div class="object-fit-demo">
+                <div class="object-fit-item">
+                    <div class="image-container">
+                        <img src="images/photo.jpg" 
+                             alt="Cover пример" 
+                             class="object-fit-cover">
+                    </div>
+                    <span>object-fit: cover</span>
+                    <p>Заполняет контейнер с обрезкой краёв</p>
+                </div>
+                <div class="object-fit-item">
+                    <div class="image-container">
+                        <img src="images/photo.jpg" 
+                             alt="Contain пример" 
+                             class="object-fit-contain">
+                    </div>
+                    <span>object-fit: contain</span>
+                    <p>Вписывает полностью с полями</p>
+                </div>
+                <div class="object-fit-item">
+                    <div class="image-container">
+                        <img src="images/photo.jpg" 
+                             alt="Fill пример" 
+                             class="object-fit-fill">
+                    </div>
+                    <span>object-fit: fill</span>
+                    <p>Растягивает, искажая пропорции</p>
+                </div>
             </div>
         </section>
 
@@ -182,40 +216,62 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeProjectImages() {
-            document.querySelectorAll('.project-card').forEach(card => {
-                const projectId = card.querySelector('.project-details-btn').getAttribute('data-project');
-                const project = projectsData[projectId];
-                
-                if (project && project.image) {
-                    const projectImage = card.querySelector('.project-image')
-                    const picture = document.createElement('picture');
-                    const sourceWebP = document.createElement('source');
-                    sourceWebP.srcset = project.image.replace('.jpg', '.webp');
-                    sourceWebP.type = 'image/webp';
-                    const sourceJpeg = document.createElement('source');
-                    sourceJpeg.srcset = project.image;
-                    sourceJpeg.type = 'image/jpeg';
+    document.querySelectorAll('.project-card').forEach(card => {
+        const projectId = card.querySelector('.project-details-btn').getAttribute('data-project');
+        const project = projectsData[projectId];
+        
+        if (project && project.image) {
+            const projectImage = card.querySelector('.project-image');
+            const picture = document.createElement('picture');
             
-                    const img = document.createElement('img');
-                    img.src = project.image;
-                    img.alt = project.title;
-                    img.className = 'project-responsive-image';
-                    img.loading = 'lazy';
-
-                    if (project.image.includes('@1x')) {
-                        img.srcset = `${project.image} 1x, ${project.image.replace('@1x', '@2x')} 2x`;
-                    }
-                    picture.appendChild(sourceWebP);
-                    picture.appendChild(sourceJpeg);
-                    picture.appendChild(img);
-                    
-                    projectImage.innerHTML = '';
-                    projectImage.appendChild(picture);
+            // Разные размеры для разных экранов
+            const sourceLarge = document.createElement('source');
+            sourceLarge.media = '(min-width: 1200px)';
+            sourceLarge.srcset = `
+                ${project.image.replace('.jpg', '-large.webp')},
+                ${project.image.replace('.jpg', '-large@2x.webp')} 2x
+            `;
             
+            const sourceMedium = document.createElement('source');
+            sourceMedium.media = '(min-width: 768px)';
+            sourceMedium.srcset = `
+                ${project.image.replace('.jpg', '-medium.webp')},
+                ${project.image.replace('.jpg', '-medium@2x.webp')} 2x
+            `;
+            
+            // WebP с Retina поддержкой
+            const sourceWebP = document.createElement('source');
+            sourceWebP.srcset = `
+                ${project.image.replace('.jpg', '-small.webp')} 1x,
+                ${project.image.replace('.jpg', '-small@2x.webp')} 2x
+            `;
+            sourceWebP.type = 'image/webp';
+            
+            // Fallback JPEG с Retina поддержкой
+            const img = document.createElement('img');
+            img.src = project.image.replace('.jpg', '-small.jpg');
+            img.srcset = `
+                ${project.image.replace('.jpg', '-small.jpg')} 1x,
+                ${project.image.replace('.jpg', '-small@2x.jpg')} 2x
+            `;
+            img.sizes = '(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw';
+            img.alt = project.title;
+            img.width = 400;
+            img.height = 250;
+            img.className = 'project-responsive-image';
+            img.loading = 'lazy';
+            
+            picture.appendChild(sourceLarge);
+            picture.appendChild(sourceMedium);
+            picture.appendChild(sourceWebP);
+            picture.appendChild(img);
             
             projectImage.innerHTML = '';
-            projectImage.appendChild(img);
+            projectImage.appendChild(picture);
             
+            img.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
             
             img.onerror = function() {
                 picture.style.display = 'none';
@@ -226,10 +282,10 @@ function initializeProjectImages() {
                 projectImage.style.color = 'white';
                 projectImage.style.fontWeight = 'bold';
                 projectImage.innerHTML = project.title;
-                    };
+            };
         }
     });
-}
+}    
 
 function filterProjects(filter) {
     const projects = document.querySelectorAll('.project-card');

@@ -66,42 +66,55 @@ function initializeProjectImages() {
         if (project && project.image) {
             const projectImage = card.querySelector('.project-image');
             const picture = document.createElement('picture');
-            const sourceAvif = document.createElement('source');
-            sourceAvif.type = 'image/avif';
-            sourceAvif.srcset = `
-                ${project.image.replace('.jpg', '-150.avif')} 150w,
-                ${project.image.replace('.jpg', '-200.avif')} 200w,
-                ${project.image.replace('.jpg', '-300.avif')} 300w
+            
+            // Разные размеры для разных экранов
+            const sourceLarge = document.createElement('source');
+            sourceLarge.media = '(min-width: 1200px)';
+            sourceLarge.srcset = `
+                ${project.image.replace('.jpg', '-large.webp')},
+                ${project.image.replace('.jpg', '-large@2x.webp')} 2x
             `;
-            sourceAvif.sizes = '(max-width: 768px) 150px, 200px';
+            
+            const sourceMedium = document.createElement('source');
+            sourceMedium.media = '(min-width: 768px)';
+            sourceMedium.srcset = `
+                ${project.image.replace('.jpg', '-medium.webp')},
+                ${project.image.replace('.jpg', '-medium@2x.webp')} 2x
+            `;
+            
+            // WebP с Retina поддержкой
             const sourceWebP = document.createElement('source');
-            sourceWebP.type = 'image/webp';
             sourceWebP.srcset = `
-                ${project.image.replace('.jpg', '-150.webp')} 150w,
-                ${project.image.replace('.jpg', '-200.webp')} 200w,
-                ${project.image.replace('.jpg', '-300.webp')} 300w
+                ${project.image.replace('.jpg', '-small.webp')} 1x,
+                ${project.image.replace('.jpg', '-small@2x.webp')} 2x
             `;
-            sourceWebP.sizes = '(max-width: 768px) 150px, 200px';
+            sourceWebP.type = 'image/webp';
+            
+            // Fallback JPEG с Retina поддержкой
             const img = document.createElement('img');
-            img.src = project.image;
+            img.src = project.image.replace('.jpg', '-small.jpg');
             img.srcset = `
-                ${project.image.replace('.jpg', '-150.jpg')} 150w,
-                ${project.image.replace('.jpg', '-200.jpg')} 200w,
-                ${project.image.replace('.jpg', '-300.jpg')} 300w
+                ${project.image.replace('.jpg', '-small.jpg')} 1x,
+                ${project.image.replace('.jpg', '-small@2x.jpg')} 2x
             `;
-            img.sizes = '(max-width: 768px) 150px, 200px';
+            img.sizes = '(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw';
             img.alt = project.title;
-            img.width = 200;
-            img.height = 180;
+            img.width = 400;
+            img.height = 250;
             img.className = 'project-responsive-image';
             img.loading = 'lazy';
             
-            picture.appendChild(sourceAvif);
+            picture.appendChild(sourceLarge);
+            picture.appendChild(sourceMedium);
             picture.appendChild(sourceWebP);
             picture.appendChild(img);
             
             projectImage.innerHTML = '';
             projectImage.appendChild(picture);
+            
+            img.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
             
             img.onerror = function() {
                 picture.style.display = 'none';
