@@ -11,7 +11,11 @@
     --success-color: #1e7b1e;      
     --error-color: #c53030;        
 }
-
+a{
+    color: #0056b3; 
+    text-decoration: underline;
+    font-weight: 600;
+}
 html, body { height: 100%; }
 
 body {
